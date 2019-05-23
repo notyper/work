@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" type="text/css" href="css/mycss.css" />
+    <script lang="JavaScript">
+      function createData(){
+        var store=document.getElementById("store").value;
+        var description=document.getElementById("description").value;
+        var TAB="\t";
+        var CR = "\r";
+        var line1, line2, line3, line4;
+
+        line1=store+TAB+"M9"+store+TAB+description.toUpperCase()+TAB+"N"+TAB+"0"+TAB+"N"+TAB+"N";
+        line2=store+TAB+"INTRAN"+TAB+"IN TRANSIT"+TAB+"N"+TAB+"0"+TAB+"N"+TAB+"N";
+        line3=store+TAB+"_INVAJ"+TAB+"INVENTORY ADJUSTMENT"+TAB+"N"+TAB+"1"+TAB+"N"+TAB+"N";
+        line4=store+TAB+"QUAR"+TAB+"QUARANTINE STORAGE"+TAB+"Y"+TAB+"1"+TAB+"N"+TAB+"N";
+
+        document.getElementById('output').value= line1+CR+line2+CR+line3+CR+line4+CR;
+      }
+      function resetFields(){
+        document.getElementById("store").value=null;
+        document.getElementById("description").value=null;
+        document.getElementById("output").value=null;
+      }
+      function copyData() {
+        var copyText = document.getElementById("output");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Copied the text: " + copyText.value);
+      }
+
+    </script>
+    <style>
+      h1{
+        font-size:  25px;
+        text-align: center;
+      }
+      p{
+        font-size:  20px;
+        text-align: center;
+      }
+      textarea{
+        text-align: left;
+        display:    inline-block;
+        display:
+      }
+      div{
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body onload="resetFields()">
+    <h1>Outside Processor Location Creator</h1>
+    <p id="one">Enter data for outside processor</p>
+    <div id="two">
+      <textarea
+        id="store"
+        rows="1"
+        cols="30"
+        placeholder="Enter store number"
+      ></textarea>
+
+      <textarea
+        id="description"
+        rows="1"A
+        cols="30"
+        placeholder="Enter store description"
+      ></textarea>
+
+      <br />
+      <textarea id="output" rows="4" cols="80"></textarea> <br />
+
+      <button name="create" onclick="createData()">Create Data</button>
+      <button name="copy" onclick="copyData()">Copy Data</button>
+      <button name="reset" onclick="resetFields()">Reset</button>
+    </div>
+  </body>
+</html>
